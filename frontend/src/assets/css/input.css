@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwindcss forms;
+
+@layer base {
+  body {
+    @apply text-light bg-dark; /* This sets the text color to a dark gray globally */
+  }
+}
+
+.btn {
+  @apply rounded-md px-4 py-2 bg-dark hover:bg-lightDark;
+}
+
+.btn-primary {
+  @apply bg-accent hover:bg-accentDark;
+}
+
+.btn-secondary {
+  @apply border bg-dark border-lightDark;
+}

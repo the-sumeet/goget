@@ -2,8 +2,12 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"io"
+	"log"
+	"net/http"
 )
+
+var methods = [7]string{"GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"}
 
 // App struct
 type App struct {
@@ -15,13 +19,25 @@ func NewApp() *App {
 	return &App{}
 }
 
-// startup is called when the app starts. The context is saved
-// so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+// startup is called when the app starts. The context is saved
+// so we can call the runtime methods
+func (a *App) Methods() [7]string {
+	return methods
+}
+
+func (a *App) SendHttpRequest(url string) string {
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	buffer, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return string(buffer[:])
 }

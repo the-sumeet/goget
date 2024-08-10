@@ -1,15 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./**/*.{html,svelte}"],
+    content: ["./src/**/*.{html,svelte}"],
     theme: {
       extend: {},
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        light: '#f8f8f2',
-        dark: '#282a36',
-        lightDark: '#44475a',
-        extraLightDark: '#6272a4',
+        light: '#EEEEEE',
+        dark: '#222831',
+        lightDark: '#393E46',
+        accent: '#00ADB5',
+        accentDark: '#006f75',
       }
     },
     plugins: [],
