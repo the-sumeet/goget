@@ -12,7 +12,6 @@
   <Sidebar />
 
   <div class="flex flex-col w-full">
-    <!-- URL Bar -->
     <UrlBar />
 
     <div class="flex grow">
