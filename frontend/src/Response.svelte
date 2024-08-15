@@ -50,14 +50,15 @@
     <!-- Right Side Buttons -->
     <div class="flex">
       <!-- Copy button -->
-      <button class="btn btn-secondary">
+      <button class="btn btn-text">
         <i class="bi bi-copy"></i>
       </button>
 
       <!-- Format button -->
-      <button class="btn btn-secondary">
+      <button class="btn btn-text">
         <i class="bi bi-magic"></i>
       </button>
+      
     </div>
   </div>
 

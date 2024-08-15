@@ -20,3 +20,7 @@
 .btn-secondary {
   @apply border bg-dark border-lightDark;
 }
+
+.btn-text {
+  @apply border hover:bg-dark hover:text-accent border-0;
+}
