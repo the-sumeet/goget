@@ -62,7 +62,7 @@
   </div>
 
   <!-- Outout Text -->
-  <div class="grow text-base h-full w-full" id="editor">sidfniefni</div>
+  <div class="grow text-base w-full" id="editor">sidfniefni</div>
 
   <!-- Bottom Toolbar -->
   <div class="flex p-2">
