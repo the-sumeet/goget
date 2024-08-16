@@ -11,6 +11,9 @@ module.exports = {
         lightDark: '#393E46',
         accent: '#00ADB5',
         accentDark: '#006f75',
+        green: '#13CE66',
+        red: '#FF4949',
+        yellow: '#FFD166',
       }
     },
     plugins: [],
