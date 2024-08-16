@@ -5,24 +5,45 @@
   import ace from "ace-builds/src-noconflict/ace"; // Import Ace from node_modules
   import "ace-builds/src-noconflict/mode-javascript"; // Import the mode you need
   import "ace-builds/src-noconflict/theme-monokai"; // Import the theme you want
-
-  let response;
+  import { formatDuration } from "./utils.js";
+  import {ClipboardSetText} from '../wailsjs/runtime/runtime.js';
+  
+  let status;
+  let body;
+  let time;
   let editor;
-
-  const unsub = currentResponse.subscribe((value) => {
-    response = value;
-  });
-
-  $: if (editor) {
-    editor.setValue(response);
-  }
+  let copying = false;
 
   onMount(() => {
     editor = ace.edit("editor");
     editor.setTheme("ace/theme/dracula");
     editor.session.setMode("ace/mode/javascript");
-    editor.setValue(response);
+    editor.setValue("");
   });
+
+  const unsub = currentResponse.subscribe((value) => {
+    console.log(value);
+    status = value.status;
+    body = value.body;
+    time = value.time;
+    console.log(body);
+  });
+
+  $: if (editor && body) {
+    editor.setValue(body);
+  }
+
+
+
+  function onCopy() {
+    if (copying) {
+      return;
+    }
+    copying = true;
+    ClipboardSetText(editor.getValue()).then((copied) => {
+      copying = false;
+    });
+  }
 
   onDestroy(unsub);
 </script>
@@ -50,8 +71,12 @@
     <!-- Right Side Buttons -->
     <div class="flex">
       <!-- Copy button -->
-      <button class="btn btn-text">
+      <button on:click={onCopy} class="btn btn-text">
+        {#if copying}
+        <div class="animate-spin"><i class="bi bi-arrow-repeat"></i></div>
+        {:else}
         <i class="bi bi-copy"></i>
+        {/if}
       </button>
 
       <!-- Format button -->
@@ -66,15 +91,17 @@
   <div class="grow text-base w-full" id="editor">sidfniefni</div>
 
   <!-- Bottom Toolbar -->
-  <div class="flex p-2">
-    <!-- Copy button -->
-    <button class="btn btn-secondary">
-      <i class="bi bi-copy"></i>
-    </button>
+  <div class="flex p-2 space-x-2">
+    {#if status && status.startsWith("2")}
+      <span class="text-green">{status}</span>
+    {:else if status && status.startsWith("4")}
+      <span class="text-yellow">{status}</span>
+    {:else if status}
+      <span class="text-red">{status}</span>
+    {/if}
 
-    <!-- Format button -->
-    <button class="btn btn-secondary">
-      <i class="bi bi-magic"></i>
-    </button>
+    {#if time}
+      <span class="text-gray-500">{formatDuration(time)}</span>
+    {/if}
   </div>
 </div>

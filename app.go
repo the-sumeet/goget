@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"time"
 )
 
 var methods = [7]string{"GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"}
@@ -60,4 +61,8 @@ func (a *App) SendHttpRequest(url string) HttpResponse {
 		Body:       string(buffer[:]),
 		Time:       end.Sub(start),
 	}
+}
+
+func (a *App) CopyToClipboard(text string) {
+
 }

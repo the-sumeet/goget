@@ -3,7 +3,6 @@
   import Request from "./Request.svelte";
   import RequestOut from "./Response.svelte";
   import TopBar from "./UrlBar.svelte";
-  // import { methods } from "./constants";
   import { Methods } from "../wailsjs/go/main/App";
   import { currentUrl, currentResponse } from "./stores.js";
   import { SendHttpRequest } from "../wailsjs/go/main/App";
@@ -44,7 +43,7 @@
       on:click={() => (opened = !opened)}
       class="btn btn-secondary relative z-10 flex items-center"
     >
-      <span class="mx-1 text-xl">{method}</span>
+      <span class="mx-1 text-md">{method}</span>
     </button>
 
     <!-- Dropdown menu -->
@@ -71,7 +70,7 @@
       bind:value={$currentUrl}
       type="text"
       placeholder="https://example.com"
-      class="block w-full text-xl rounded-lg border border-lightDark bg-dark px-4 py-2"
+      class="block w-full text-md rounded-lg border border-lightDark bg-dark px-4 py-2"
     />
   </div>
 
