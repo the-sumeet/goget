@@ -37,15 +37,27 @@ func (a *App) Methods() [7]string {
 	return methods
 }
 
-func (a *App) SendHttpRequest(url string) string {
+func (a *App) SendHttpRequest(url string) HttpResponse {
+	// Time required for request
+	start := time.Now()
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatalln(err)
 	}
+	end := time.Now()
+	// Total time
+	log.Printf("Time required for request: %v\n", end.Sub(start))
 
 	buffer, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	return string(buffer[:])
+
+	return HttpResponse{
+		Status:     resp.Status,
+		StatusCode: resp.StatusCode,
+		Header:     resp.Header,
+		Body:       string(buffer[:]),
+		Time:       end.Sub(start),
+	}
 }
