@@ -9,6 +9,14 @@ import (
 
 var methods = [7]string{"GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"}
 
+type HttpResponse struct {
+	Status     string              `json:"status"`
+	StatusCode int                 `json:"statusCode"`
+	Header     map[string][]string `json:"header"`
+	Body       string              `json:"body"`
+	Time       time.Duration       `json:"time"`
+}
+
 // App struct
 type App struct {
 	ctx context.Context
