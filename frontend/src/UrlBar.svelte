@@ -29,6 +29,7 @@
     sending = true;
     SendHttpRequest($currentUrl).then((response) => {
       currentResponse.set(response);
+      console.log(response);
       sending = false;
     });
   }

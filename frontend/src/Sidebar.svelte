@@ -1,4 +1,4 @@
-<aside class="flex">
+<aside class="flex grow-0 max-h-full">
   <div class="flex flex-col items-center w-16 h-screen py-8 space-y-8 bg-dark border-lightDark">
       <a href="#!">
           <img class="w-auto h-6" src="https://merakiui.com/images/logo.svg" alt="">

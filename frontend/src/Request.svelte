@@ -7,7 +7,6 @@
   let sending = false;
   let opened = false;
 
-
   function onUrlUpdate(event) {
     currentUrl.set(event.target.value);
   }
@@ -24,10 +23,10 @@
   }
 </script>
 
-<div class="basis-1/2 flex flex-col border-r border-lightDark">
+<div class="flex flex-col basis-1/2 flex-none border-r border-lightDark">
   <!-- Tabs -->
   <div
-    class="flex  overflow-x-auto overflow-y-hidden border-b border-lightDark whitespace-nowrap"
+    class="grow-0 flex flex-row overflow-x-auto border-b border-lightDark whitespace-nowrap overflow-y-hidden"
   >
     <button
       class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-blue-600 bg-transparent border-b-4 border-accent sm:text-base dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none"
@@ -52,4 +51,112 @@
       Body
     </button>
   </div>
+
+  <!-- <div class="flex-1 overflow-y-auto">
+    <div class="flow-root">
+      <dl class="-my-3 divide-y divide-gray-100 text-sm">
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Title</dt>
+          <dd class="text-gray-700 sm:col-span-2">Mr</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Name</dt>
+          <dd class="text-gray-700 sm:col-span-2">John Frusciante</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Occupation</dt>
+          <dd class="text-gray-700 sm:col-span-2">Guitarist</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Salary</dt>
+          <dd class="text-gray-700 sm:col-span-2">$1,000,000+</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Bio</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Bio</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Bio</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Bio</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Bio</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Bio</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Bio</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">sdsdd</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Bio</dt>
+          <dd class="text-gray-700 sm:col-span-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis
+            debitis explicabo doloremque impedit nesciunt dolorem facere, dolor
+            quasi veritatis quia fugit aperiam aspernatur neque molestiae labore
+            aliquam soluta architecto?
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div> -->
 </div>
