@@ -62,7 +62,3 @@ func (a *App) SendHttpRequest(url string) HttpResponse {
 		Time:       end.Sub(start),
 	}
 }
-
-func (a *App) CopyToClipboard(text string) {
-
-}
