@@ -4,13 +4,29 @@
   import RequestOut from "./Response.svelte";
   import TopBar from "./UrlBar.svelte";
   import { Methods } from "../wailsjs/go/main/App";
-  import { currentUrl, currentResponse } from "./stores.js";
+  import { currentUrl, currentMethod, currentParams, currentResponse } from "./stores.js";
   import { SendHttpRequest } from "../wailsjs/go/main/App";
+  import { each, onDestroy } from "svelte/internal";
 
   let opened = false;
   let sending = false;
   let methods = [];
+
   let method = "";
+  let url = ""
+  let params = {};
+
+  const currentUrlSubSub = currentUrl.subscribe((value) => {
+    url = value;
+  });
+  const currentMethodUnsub = currentMethod.subscribe((value) => {
+    method = value;
+  });
+  const currentParamsUnsub = currentParams.subscribe((value) => {
+    params = value;
+  });
+
+
 
   Methods().then((response) => {
     methods = response;
@@ -27,12 +43,18 @@
       return;
     }
     sending = true;
-    SendHttpRequest($currentUrl).then((response) => {
+    SendHttpRequest(url).then((response) => {
       currentResponse.set(response);
-      console.log(response);
       sending = false;
     });
   }
+
+  onDestroy(() => {
+    currentUrlSubSub();
+    currentMethodUnsub();
+    currentParamsUnsub()
+  });
+
 </script>
 
 <div class="flex w-full items-center mb-4 p-2">
@@ -44,7 +66,7 @@
       on:click={() => (opened = !opened)}
       class="btn btn-secondary relative z-10 flex items-center"
     >
-      <span class="mx-1 text-md">{method}</span>
+      <span class="mx-1 text-md">{method.toUpperCase()}</span>
     </button>
 
     <!-- Dropdown menu -->
@@ -68,7 +90,7 @@
   <!-- Input -->
   <div class="w-full mr-2">
     <input
-      bind:value={$currentUrl}
+      bind:value={url}
       type="text"
       placeholder="https://example.com"
       class="block w-full text-md rounded-lg border border-lightDark bg-dark px-4 py-2"

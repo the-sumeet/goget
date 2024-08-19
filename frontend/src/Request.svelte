@@ -3,7 +3,7 @@
 
   import { currentUrl, currentResponse } from "./stores.js";
   import { SendHttpRequest } from "../wailsjs/go/main/App";
-
+  import InputParams from "./InputParams.svelte";
   let sending = false;
   let opened = false;
 
@@ -50,6 +50,10 @@
     >
       Body
     </button>
+  </div>
+
+  <div class="flex-1 overflow-y-auto">
+    <InputParams />
   </div>
 
   <!-- <div class="flex-1 overflow-y-auto">
