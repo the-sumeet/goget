@@ -26,33 +26,39 @@
 <div class="flex flex-col basis-1/2 flex-none border-r border-lightDark">
   <!-- Tabs -->
   <div
-    class="grow-0 flex flex-row overflow-x-auto border-b border-lightDark whitespace-nowrap overflow-y-hidden"
+    class="flex justify-between overflow-x-auto overflow-y-hidden border-b border-lightDark whitespace-nowrap"
   >
-    <button
-      class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-blue-600 bg-transparent border-b-4 border-accent sm:text-base dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none"
-    >
-      Params
-    </button>
+    <div>
+      <button
+        class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-blue-600 bg-transparent border-b-4 border-accent sm:text-base dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none"
+      >
+        Params
+      </button>
+      <button
+        class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400"
+      >
+        Headers
+      </button>
+      <button
+        class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400"
+      >
+        Auth
+      </button>
+      <button
+        class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400"
+      >
+        Body
+      </button>
+    </div>
 
     <button
-      class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400"
+      class="btn btn-text inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400"
     >
-      Headers
-    </button>
-
-    <button
-      class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400"
-    >
-      Auth
-    </button>
-    <button
-      class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400"
-    >
-      Body
+    <i class="bi bi-plus-lg"></i>
     </button>
   </div>
 
-  <div class="flex-1 overflow-y-auto">
+  <div class="flex-1 overflow-y-auto p-4">
     <InputParams />
   </div>
 
