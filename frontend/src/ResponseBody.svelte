@@ -4,29 +4,50 @@
     import { currentResponse } from "./stores.js";
     import { onDestroy } from "svelte/internal";
     import { onMount } from "svelte/internal";
-    import ace from "ace-builds/src-noconflict/ace"; // Import Ace from node_modules
-    import "ace-builds/src-noconflict/mode-javascript"; // Import the mode you need
-    import "ace-builds/src-noconflict/theme-monokai"; // Import the theme you want
-    import { copyText } from "./utils.js";
+    import * as ace from 'brace';
+    import 'brace/mode/html';
+    import 'brace/mode/json';
+    import 'brace/mode/text';
+    import 'brace/mode/xml';
+    import 'brace/mode/yaml';
+    import 'brace/theme/twilight';
+
+    import { currentResponseType } from "./stores.js";
 
     let body;
+    let responseType = "text";
 
     onMount(() => {
         editor = ace.edit("editor");
-        editor.setTheme("ace/theme/dracula");
-        editor.session.setMode("ace/mode/javascript");
+        editor.setTheme("ace/theme/twilight");
         editor.setReadOnly(true);
+        editor.session.setMode("ace/mode/" + responseType);
+        editor.setFontSize('14px');
+
     });
 
     $: if (editor && body) {
         editor.setValue(body, -1);
     }
 
+    // $: if (responseType) {editor.session.setMode("ace/mode/"+responseType)};
+
     const unsub = currentResponse.subscribe((value) => {
         body = value.body;
     });
 
-    onDestroy(unsub);
+    const unsubResponseType = currentResponseType.subscribe((value) => {
+        responseType = value;
+        if (editor) {
+            console.log("Setting mode to " + responseType);
+            editor.session.setMode("ace/mode/" + responseType)
+        }
+    });
+
+    onDestroy(() => {
+        unsub();
+        unsubResponseType();
+    });
 </script>
 
 <div class="h-full text-base" id="editor"></div>

@@ -1,12 +1,8 @@
 <script>
-  import Sidebar from "./Sidebar.svelte";
-  import Request from "./Request.svelte";
-  import RequestOut from "./Response.svelte";
-  import TopBar from "./UrlBar.svelte";
   import { Methods } from "../wailsjs/go/main/App";
   import { currentUrl, currentMethod, currentParams, currentResponse } from "./stores.js";
   import { SendHttpRequest } from "../wailsjs/go/main/App";
-  import { each, onDestroy } from "svelte/internal";
+  import { onDestroy } from "svelte/internal";
 
   let opened = false;
   let sending = false;
@@ -44,6 +40,7 @@
     }
     sending = true;
     SendHttpRequest(url).then((response) => {
+      console.log(response);
       currentResponse.set(response);
       sending = false;
     });
