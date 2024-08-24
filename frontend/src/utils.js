@@ -21,4 +21,12 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export { formatDuration };
+async function copyText(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+    } catch (error) {
+        console.error('Failed to copy:', error);
+    }
+}
+
+export { formatDuration,copyText };
