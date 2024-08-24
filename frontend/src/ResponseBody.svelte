@@ -7,6 +7,7 @@
     import ace from "ace-builds/src-noconflict/ace"; // Import Ace from node_modules
     import "ace-builds/src-noconflict/mode-javascript"; // Import the mode you need
     import "ace-builds/src-noconflict/theme-monokai"; // Import the theme you want
+    import { copyText } from "./utils.js";
 
     let body;
 

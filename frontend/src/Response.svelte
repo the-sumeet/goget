@@ -4,14 +4,13 @@
   import "ace-builds/src-noconflict/mode-javascript"; // Import the mode you need
   import "ace-builds/src-noconflict/theme-monokai"; // Import the theme you want
   import { formatDuration } from "./utils.js";
-  import { ClipboardSetText } from "../wailsjs/runtime/runtime.js";
   import ResponseBody from "./ResponseBody.svelte";
   import ResponseHeaders from "./ResponseHeaders.svelte";
+  import { copyText } from "./utils.js";
 
   let status;
   let time;
-  let header;
-  let editor;
+  let body;
   let copying = false;
   let currentTab = 0;
   let selectedTabCss =
@@ -19,30 +18,30 @@
   let unSelectedTabCss =
     "inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400";
 
+
   const unsub = currentResponse.subscribe((value) => {
     status = value.status;
-    header = value.header;
     time = value.time;
+    body = value.body;
   });
-
-  function onCopy() {
-    if (copying) {
-      return;
-    }
-    copying = true;
-    ClipboardSetText(editor.getValue()).then((copied) => {
-      copying = false;
-    });
-  }
 
   function setTab(index) {
     currentTab = index;
   }
 
-  onDestroy(unsub);
+  function copy() {
+    copying = true;
+    copyText(body).then(() => {
+      copying = false;
+    });
+  }
+
+  onDestroy(() => {
+    unsub();
+  });
 </script>
 
-<div class="basis-1/2 flex flex-col overflow-y-auto">
+<div class="basis-1/2 flex flex-col flex-none overflow-y-auto">
   <!-- Response Tabs -->
   <div
     class="flex justify-between overflow-x-auto overflow-y-hidden border-b border-lightDark whitespace-nowrap"
@@ -67,7 +66,7 @@
     <!-- Right Side Buttons -->
     <div class="flex">
       <!-- Copy button -->
-      <button on:click={onCopy} class="btn btn-text">
+      <button on:click={copy} class="btn btn-text">
         {#if copying}
           <div class="animate-spin"><i class="bi bi-arrow-repeat"></i></div>
         {:else}
@@ -83,7 +82,7 @@
   </div>
 
   <!-- Response body or headers -->
-  <div class="flex-1">
+  <div class="flex-1 overflow-y-auto">
     {#if currentTab === 0}
       <ResponseBody />
     {:else}
