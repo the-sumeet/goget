@@ -17,7 +17,7 @@
     <div class="flex-1 overflow-y-auto">
         <!-- Single Input -->
         {#each params as param, index}
-        <InputParam />
+        <InputParam name={param.name} value={param.value} />
         {/each}
     </div>
      

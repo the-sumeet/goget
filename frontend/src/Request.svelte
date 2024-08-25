@@ -1,11 +1,16 @@
 <script>
   import "bootstrap-icons/font/bootstrap-icons.css";
-
+  import { onDestroy } from "svelte";
   import { currentUrl, currentResponse } from "./stores.js";
   import { SendHttpRequest } from "../wailsjs/go/main/App";
   import InputParams from "./InputParams.svelte";
   let sending = false;
   let opened = false;
+  let url;
+
+  const unsubCurrentUrl = currentUrl.subscribe((value) => {
+    url = value;
+  });
 
   function onUrlUpdate(event) {
     currentUrl.set(event.target.value);
@@ -21,6 +26,16 @@
       sending = false;
     });
   }
+
+  function addParam() {
+      const tUrl = new URL(url);
+      tUrl.searchParams.append("", "");
+      currentUrl.set(tUrl.toString());
+  }
+
+  onDestroy(() => {
+    unsubCurrentUrl();
+  });
 </script>
 
 <div class="flex flex-col basis-1/2 flex-none border-r border-lightDark">
@@ -52,6 +67,7 @@
     </div>
 
     <button
+      on:click={addParam}
       class="btn btn-text inline-flex items-center h-10 px-4 -mb-px text-sm text-center text-gray-700 bg-transparent border-b-2 border-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400"
     >
     <i class="bi bi-plus-lg"></i>

@@ -9,6 +9,22 @@ const currentParams = writable([{id: 1, "name": "test", "value": "test"}, {id: 2
 const currentResponse = writable(httpResponse);
 const currentResponseType = writable('text');
 
+currentUrl.subscribe((value) => {
+    // Parse url and get params
+    try{
+        const url = new URL(value);
+        const urlParams = Array.from(url.searchParams);
+        let params = [];
+        for (let i = 0; i < urlParams.length; i++) {
+            params.push({id: i, name:urlParams[i][0], value: urlParams[i][1]});
+        }
+        currentParams.set(params);
+    } catch (e) {
+        console.log(e);
+    }
+    
+});
+
 currentResponse.subscribe((value) => {
     if (value.header) {
         const contentType = value.header['Content-Type'];

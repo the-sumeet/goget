@@ -22,6 +22,8 @@
     params = value;
   });
 
+  $: currentUrl.set(url);
+
 
 
   Methods().then((response) => {
@@ -45,6 +47,8 @@
       sending = false;
     });
   }
+
+  
 
   onDestroy(() => {
     currentUrlSubSub();
